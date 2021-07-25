@@ -16,7 +16,7 @@
 
 #### Условие:
 
-Скачайте проект
+Скачайте [проект](https://github.com/AlexanderZiyatdinov/Course/raw/main/Week3/HW/5.%20Robot.zip)
 
 В файле ```robot``` допишите программу - одну единственную строку.
 
