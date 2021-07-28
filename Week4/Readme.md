@@ -104,3 +104,205 @@ while условие:
 
 ## Цикл for
 
+Цикл `for` представляет из себя некоторый `синтаксический сахар` цикла `while`. Его синтаксис немного проще, но по сути он выполняет всё то же самое:
+
+```python
+for переменная in коллекция:
+    тело_цикла
+```
+
+Под словом `коллекция` понимается некоторый объект, по которому мы можем итерироваться. По сути это [`Iterable`](https://pyneng.readthedocs.io/ru/latest/book/13_iterator_generator/iterable.html) объект. Ну это и понятно, поскольку мы знаем, что оператор `in` мы можем применить для проверки того, содержится ли объект `a` в `Iterable` объекте `b`:
+
+```python
+a in b # ???
+```
+
+Давайте более подробно рассмотрим работу цикла `for`.
+
+### Проход по Iterable object
+
+Рассмотрим такой пример: необходимо вывести каждое предложение некоторого текста с новой строки. За основу возьмем такой [текст](https://ru.wikipedia.org/wiki/Lorem_ipsum):
+
+```python
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+```
+
+Напишем небольшую программу:
+
+```python
+text = """Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.""" # Сохранили весь наш текст в переменную
+
+sentences = text.split('. ') # С помощью метода <str>.split() мы разбили текст по строке ". " (точка и пробел). 
+# В итоге переменная sentences - это список предложений исходного текста, т. е. sentences[0] - это первое предложение, sentences[2] - второе и т. д.
+
+for sentence in sentences: # Говорим, что переменная sentence будет проходиться по sentences и принимать очередное значение
+    print(sentence)
+    
+# Вывод:
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+```
+
+Как мы видим цикл `for` прошелся по каждому предложению в списке наших предложений.
+
+Другой пример, более приземленный:
+
+```python
+for elem in [1, 2, 3, 4]:
+    print(elem, end=' ')
+# Вывод:
+1 2 3 4 
+```
+
+### Проход по индексам Iterable object
+
+Иногда нам приходится изменять содержимое какой-то коллекции. Например, я хочу увеличить вдвое каждый элемент моего списка:
+
+```python
+a = [1, 2, 3, 4]
+for elem in a:
+    elem *= 2
+print(a)
+
+# Вывод: 
+[1, 2, 3, 4]
+```
+
+Ничего не изменилось :( Дело в том, что переменная `elem` - это лишь некоторая временная переменная, которая принимает значение равное очередному элементу коллекции, при этом `elem` никак не ссылается на реальное содержимое коллекции.
+
+Тогда, мы можем написать что-то подобное:
+
+```python
+a = [1, 2, 3, 4]
+for i in (1, 2, 3, 4):    
+    a[i] *= 2
+print(a)
+# Вывод: 
+[2, 4, 6, 8]
+```
+
+Дело лучше, но... что если нам нужно будет поменять 100 элементов, 1000 или 1000000, не будем же мы писать `tuple` все время. Для решения такой проблемы у нас есть специальная функция `range()`, которая генерирует специальный объект  `<class 'range'>` - по сути числовую коллекцию.
+
+*Примечание: обычно при перечислении индексов пишут буквы i, j, k и так далее. Ибо данные обозначения лишь символизируют индекс коллекции и не несут какого-то семантического смысла. А если нам неважен и индекс, то обычно пишут символ:  _*
+
+```python
+for i in range(10):
+    print(i, end=' ')
+# Вывод:
+0 1 2 3 4 5 6 7 8 9
+```
+
+Функция принимает три аргумента: `range([start], stop, [step])` - первые два являются необязательными.
+
+* [start] -  начало коллекции. По умолчанию равно 0
+* stop - конец коллекции, не включается в саму коллекцию. (см. пример выше)
+* [step] - шаг, по сути то же самое, что и в `slices` у `iterable objects`
+
+Чтобы более детально изучить поведение функции - поэкспериментируйте с ней в `Python` самостоятельно. 
+
+Теперь перепишем наш пример, немного по-другому:
+
+```python
+a = [1, 2, 3, 4]
+for i in range(4):
+    a[i] *= 2
+print(a)
+# Вывод: 
+[2, 4, 6, 8]
+```
+
+А можно даже так:
+
+```python
+a = [1, 2, 3, 4]
+for i in range(len(a)):
+    a[i] *= 2
+print(a)
+# Вывод: 
+[2, 4, 6, 8]
+```
+
+### break и continue. else.
+
+И `break`, и `continue`, `else` работают в цикле `for` так же, как и в `while`
+
+### Сходство While и For
+
+Как упоминалось ранее: `for` - это синтаксический сахар для `while`. Иногда бывает очень полезно уметь переписать один цикл в другой. Например вот так:
+
+```python
+# While
+count = 0
+while count < 10:
+    print(count)
+    count += 1
+    
+# for
+for count in range(10):
+    print(count)
+```
+
+### Заполнение коллекций с помощью for
+
+С помощью цикла нам удобно создавать большие коллекции. Например, я хочу создать список из 10000 случайных целых чисел от 1 до 100:
+
+```python
+import random # Импортируем библиотеку, которая отвечает за рандомные значения
+
+a = [] # Объявляем наш список
+for _ in range(10000): # Повторить 10000 раз
+    a.append(random.randint(1, 100)) # Добавляем в список a очередное случайное целое число от 1 до 100
+```
+
+### While vs. For
+
+Так когда же лучше использовать `while `, а когда `for` ?
+
+for и while теоретически взаимозаменяемы, однако нужно понимать, когда стоит использовать каждый из них. Вот рекомендации по выбору между `for `и `while`:
+
+- Заранее известно сколько раз нужно повторить действие — используйте **for**.
+- Есть переменная, изменяемая каждую итерацию и у нее есть понятный смысл — используйте **for**.
+- Иначе — используйте **while**.
+
+## Comprehensions
+
+Вернемся к созданию списков.
+
+Списки можно создавать не только с помощью `for`, для этой задачи существует специальный синтаксис, генерирующий списки. Называется он **List Comprehenstions**
+
+```python
+a = [0 for i in range(10)]
+print(a)
+
+# Выведет:
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+```
+
+Можно пойти чуть дальше:
+
+```python
+a = [i for i in range(10)]
+print(a)
+
+# Выведет:
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
+И еще дальше:
+
+```python
+a = [i for i in range(10) if i % 2 == 0]
+print(a)
+
+# Выведет:
+[0, 2, 4, 6, 8]
+```
+
+Общий синтаксис конструкции выглядит так:
+
+```python
+[элемент for переменная in коллекция [if условие]] # if условие - опциональный параметр
+```
