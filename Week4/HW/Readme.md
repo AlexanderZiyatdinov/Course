@@ -8,7 +8,7 @@
 
 ## Задачи
 
-### ## ARCANOID
+### ARCANOID
 
 ![img](https://cdn.ebaumsworld.com/mediaFiles/picture/2559883/86701462.jpg)
 
