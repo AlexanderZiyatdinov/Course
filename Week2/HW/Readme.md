@@ -14,7 +14,7 @@
 
 ![img](https://i.ytimg.com/vi/8FNA4lNBvNo/maxresdefault.jpg)
 
-![img](https://heroes3towns.com/towns/tower/unit_0_2.gif)
+![img](https://c10.patreonusercontent.com/3/eyJ3Ijo0MDB9/patreon-media/p/reward/5784374/eb875af965c64e00be10e78dbf8440fe/6.gif?token-time=2145916800&token-hash=KUAO0eD2qgoiMQQOcsEM2LMPqJBYDQAZpwGRGpdiriI%3D)
 
 #### Условие:
 
@@ -61,7 +61,7 @@ print(castle) ## Выведется:['Алебардщик', 'Стрелок', '
 
 Проверьте правильность выполнения задачи, запустив тесты в файле ```test```.
 
-![img](https://heroes3towns.com/towns/fortress/unit_7_1.gif)
+![img](https://static.goodgame.ru/files/avatars/av_45003_Eibk.gif)
 
 Чтобы узнать где живут какие существа, достаточно открыть вот эту [статью](https://homm3sod.ru/units/). Все названия берутся В ТОЧНОСТИ с этой статьи. 
 
