@@ -18,7 +18,7 @@
 
 Часто её обозначают `A(m, n)`, определена она следующим образом:
 
-![image-20210811015200771](C:\Users\79222\AppData\Roaming\Typora\typora-user-images\image-20210811015200771.png)
+![image-20210811015200771](https://github.com/AlexanderZiyatdinov/Course/blob/main/Week7/Task1.png)
 
 Напишите её.
 
@@ -26,7 +26,7 @@
 
 Необходимо написать две генераторные функции: `S(start, stop)` и `P(start, stop)`, которые генерируют списки сумм и произведений соотвественно, т. е. функции определены так:
 
-![image-20210811015941400](C:\Users\79222\AppData\Roaming\Typora\typora-user-images\image-20210811015941400.png)
+![image-20210811015941400](https://github.com/AlexanderZiyatdinov/Course/blob/main/Week7/Task2.png)
 
 
 
