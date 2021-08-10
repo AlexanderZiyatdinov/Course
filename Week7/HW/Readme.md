@@ -28,7 +28,11 @@
 
 ![image-20210811015941400](https://github.com/AlexanderZiyatdinov/Course/blob/main/Week7/Task2.png)
 
-
+```
+# Пример:
+S(1, 3) = [1, 3, 6]
+P(2, 4) = [2, 6, 24]
+```
 
 ## Задание3
 
