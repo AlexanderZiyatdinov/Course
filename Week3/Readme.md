@@ -288,7 +288,7 @@ if a > b and a < c:
 a = 10
 b = 5
 c = 9
-if a > b and a < c:
+if a > b or a < c:
     print('a больше b или a меньше c') # Выведет: a больше b или a меньше c
 ```
 
